@@ -29,6 +29,7 @@ Passenger = Base.classes.passenger
 Grouped_roomtype = Base.classes.grouped_roomtype
 Grouped_neighborhoods = Base.classes.grouped_neighborhoods
 Legal = Base.classes.legal
+Mapping = Base.classes.mapping
 #################################################
 # Flask Setup
 #################################################
@@ -48,7 +49,7 @@ def welcome():
         f"/api/v1.0/neighborhoods<br/>"
         f"/api/v1.0/mapping<br/>"
         f"/api/v1.0/legal_illegal<br/>"
-        f"/api/v1.0/passengers"
+        f"/api/v1.0/titanic"
     )
 
 
@@ -59,8 +60,8 @@ def welcome():
 
 
 
-@app.route("/api/v1.0/roomtype")
-def roomtype():
+@app.route("/api/v1.0/roomtypes")
+def roomtypes():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
@@ -70,7 +71,7 @@ def roomtype():
 
     session.close()
 
-     # Create a list dictionaries from the row data and append to a list of all_roomtypes
+    # Create a dictionary from the row data and append to a list of all_roomtypes
     all_roomtypes = []
     for roomtype, count, percentage in results:
         roomtype_dict = {}
@@ -79,53 +80,33 @@ def roomtype():
         roomtype_dict["percentage"] = percentage
         all_roomtypes.append(roomtype_dict)
 
+    print(all_roomtypes)
+    return jsonify(all_roomtypes)
 
+    
 
-    print(roomtype_dict)
-    return jsonify(roomtype_dict)
+@app.route("/api/v1.0/neighborhoods")
+def neighborhoods():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
+    """Return a list of data for"""
+    # Query all 
+    results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
 
-# @app.route("/api/v1.0/neighborhoods")
-# def roomtype():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
+    session.close()
 
-#     """Return a list of data for"""
-#     # Query all passengers
-#     results = session.query(Grouped_roomtype.roomtype, Grouped_roomtype.count, Grouped_roomtype.percentage).all()
+    # Create a dictionary from the row data and append to a list of all_roomtypes
+    all_neighborhoods = []
+    for neighbourhood_cleansed, room_type, count in results:
+        neighborhoods_dict = {}
+        neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
+        neighborhoods_dict["room_type"] = room_type
+        neighborhoods_dict["count"] = count
+        all_neighborhoods.append(neighborhoods_dict)
 
-#     session.close()
-
-#      # Create a dictionary from the row data and append to a list of all_roomtypes
-#     all_roomtypes = []
-#     for roomtype, count, percentage in results:
-#         roomtype_dict = {}
-#         roomtype_dict["roomtype"] = roomtype
-#         roomtype_dict["count"] = count
-#         roomtype_dict["percentage"] = percentage
-#         all_roomtypes.append(roomtype_dict)
-
-#     return jsonify(all_roomtypes)
-
-
-
-
-#------------------Titanic data for reference ----------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    print(all_neighborhoods)
+    return jsonify(all_neighborhoods)
 
 
 
@@ -135,15 +116,24 @@ def mapping():
     session = Session(engine)
 
     """Return a list of data for"""
-    # Query all passengers
-    results = session.query(Passenger.name).all()
+    # Query all lat long for legal and illegal listings
+    results = session.query(Mapping.name, Mapping.latitude, Mapping.longitude, Mapping.Illegal).all()
 
     session.close()
 
-    # Convert list of tuples into normal list
-    all_names = list(np.ravel(results))
+    # Create a dictionary from the row data and append to a list of all_roomtypes
+    all_mapping = []
+    for name, latitude, longitude, longitude, Illegal in results:
+        mapping_dict = {}
+        mapping_dict["name"] = name
+        mapping_dict["latitude"] = latitude
+        mapping_dict["longitude"] = longitude
+        mapping_dict["illegal"] = Illegal
+        all_mapping.append(mapping_dict)
 
-    return jsonify(all_names)
+    return jsonify(all_mapping)
+
+
     
 
 @app.route("/api/v1.0/legal_illegal")
@@ -157,37 +147,43 @@ def legal_illegal():
 
     session.close()
 
-     # Create a dictionary from the row data and append to a list of all_legal_illegal
- 
+    # Create a dictionary from the row data and append to a list of all_legal_illegal
+    all_legal_illegal = []
     for legal_illegal, count, percentage in results:
         legal_illegal_dict = {}
         legal_illegal_dict["legal_illegal"] = legal_illegal
         legal_illegal_dict["count"] = count
         legal_illegal_dict["percentage"] = percentage
+        all_legal_illegal.append(legal_illegal_dict)
 
-    return jsonify(legal_illegal_dict)
+    print(all_legal_illegal)
+    return jsonify(all_legal_illegal)
 
-# @app.route("/api/v1.0/neighborhoods")
-# def neighborhoods():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
 
-#     """Return a list of passenger data including the name, age, and sex of each passenger"""
-#     # Query all passengers
-#     results = session.query(Passenger.name, Passenger.age, Passenger.sex).all()
 
-#     session.close()
+#-----------------Titanic data for reference ----------------------    
 
-#     # Create a dictionary from the row data and append to a list of all_passengers
-#     all_passengers = []
-#     for name, age, sex in results:
-#         passenger_dict = {}
-#         passenger_dict["name"] = name
-#         passenger_dict["age"] = age
-#         passenger_dict["sex"] = sex
-#         all_passengers.append(passenger_dict)
+@app.route("/api/v1.0/titanic")
+def titanic():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
-#     return jsonify(all_passengers)
+    """Return a list of passenger data including the name, age, and sex of each passenger"""
+    # Query all passengers
+    results = session.query(Passenger.name, Passenger.age, Passenger.sex).all()
+
+    session.close()
+
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_passengers = []
+    for name, age, sex in results:
+        passenger_dict = {}
+        passenger_dict["name"] = name
+        passenger_dict["age"] = age
+        passenger_dict["sex"] = sex
+        all_passengers.append(passenger_dict)
+
+    return jsonify(all_passengers)
 
 
 if __name__ == '__main__':
