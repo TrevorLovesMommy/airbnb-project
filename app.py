@@ -48,6 +48,7 @@ def welcome():
         f"/api/v1.0/roomtype<br/>"
         f"/api/v1.0/neighborhoods<br/>"
         f"/api/v1.0/mapping<br/>"
+        f"/api/v1.0/maps<br/>"
         f"/api/v1.0/legal_illegal<br/>"
         f"/api/v1.0/titanic"
     )
@@ -82,9 +83,7 @@ def roomtypes():
 
     print(all_roomtypes)
     return jsonify(all_roomtypes)
-
     
-
 @app.route("/api/v1.0/neighborhoods")
 def neighborhoods():
     # Create our session (link) from Python to the DB
@@ -108,8 +107,6 @@ def neighborhoods():
     print(all_neighborhoods)
     return jsonify(all_neighborhoods)
 
-
-
 @app.route("/api/v1.0/mapping")
 def mapping():
     # Create our session (link) from Python to the DB
@@ -117,24 +114,24 @@ def mapping():
 
     """Return a list of data for"""
     # Query all lat long for legal and illegal listings
-    results = session.query(Mapping.name, Mapping.latitude, Mapping.longitude, Mapping.Illegal).all()
+    results = session.query(Mapping.name, Mapping.neighbourhood_cleansed, Mapping.latitude, Mapping.longitude, Mapping.room_type, Mapping.minimum_maximum_nights, Mapping.license, Mapping.illegal).all()
 
     session.close()
 
     # Create a dictionary from the row data and append to a list of all_roomtypes
     all_mapping = []
-    for name, latitude, longitude, longitude, Illegal in results:
+    for name, neighbourhood_cleansed, latitude, longitude, longitude, room_type, minimum_maximum_nights, illegal in results:
         mapping_dict = {}
         mapping_dict["name"] = name
+        mapping_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
         mapping_dict["latitude"] = latitude
         mapping_dict["longitude"] = longitude
-        mapping_dict["illegal"] = Illegal
+        mapping_dict["room_type"] = room_type
+        mapping_dict["minimum_maximum_nights"] = minimum_maximum_nights
+        mapping_dict["illegal"] = illegal
         all_mapping.append(mapping_dict)
 
     return jsonify(all_mapping)
-
-
-    
 
 @app.route("/api/v1.0/legal_illegal")
 def legal_illegal():
