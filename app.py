@@ -40,22 +40,22 @@ app = Flask(__name__)
 # Flask Routes
 #################################################
 
-@app.route("/")
-def welcome():
-    """List all available api routes."""
-    return (
-        f"Available Routes:<br/>"
-        f"/api/v1.0/roomtypes<br/>"
-        f"/api/v1.0/neighborhoods<br/>"
-        f"/api/v1.0/mapping<br/>"
-        f"/api/v1.0/legal_illegal<br/>"
-    )
-
-
 # @app.route("/")
-# def index():
-#     """Return the homepage."""
-#     return render_template("index.html")
+# def welcome():
+#     """List all available api routes."""
+#     return (
+#         f"Available Routes:<br/>"
+#         f"/api/v1.0/roomtypes<br/>"
+#         f"/api/v1.0/neighborhoods<br/>"
+#         f"/api/v1.0/mapping<br/>"
+#         f"/api/v1.0/legal_illegal<br/>"
+#     )
+
+
+@app.route("/")
+def index():
+    """Return the homepage."""
+    return render_template("index.html")
 
 
 
