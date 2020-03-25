@@ -45,12 +45,10 @@ def welcome():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/roomtype<br/>"
+        f"/api/v1.0/roomtypes<br/>"
         f"/api/v1.0/neighborhoods<br/>"
         f"/api/v1.0/mapping<br/>"
-        f"/api/v1.0/maps<br/>"
         f"/api/v1.0/legal_illegal<br/>"
-        f"/api/v1.0/titanic"
     )
 
 
@@ -91,11 +89,23 @@ def neighborhoods():
 
     """Return a list of data for"""
     # Query all 
+    # results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
     results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
 
     session.close()
 
-    # Create a dictionary from the row data and append to a list of all_roomtypes
+    # Create a dictionary from the row data and append to a list of all_neighborhoods
+    # all_neighborhoods = []
+    # for neighbourhood_cleansed, room_type, count in results:
+    #     neighborhoods_dict = {}
+    #     neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
+    #     neighborhoods_dict["room_type"] = room_type
+    #     neighborhoods_dict["count"] = count
+    #     all_neighborhoods.append(neighborhoods_dict)
+
+    # print(all_neighborhoods)
+    # return jsonify(all_neighborhoods)
+
     all_neighborhoods = []
     for neighbourhood_cleansed, room_type, count in results:
         neighborhoods_dict = {}
@@ -114,21 +124,22 @@ def mapping():
 
     """Return a list of data for"""
     # Query all lat long for legal and illegal listings
-    results = session.query(Mapping.name, Mapping.neighbourhood_cleansed, Mapping.latitude, Mapping.longitude, Mapping.room_type, Mapping.minimum_maximum_nights, Mapping.license, Mapping.illegal).all()
+
+    results = session.query(Mapping.latitude, Mapping.longitude, Mapping.illegal, Mapping.name, Mapping.minimum_maximum_nights, Mapping.room_type, Mapping.neighbourhood_cleansed).all()
 
     session.close()
 
     # Create a dictionary from the row data and append to a list of all_roomtypes
     all_mapping = []
-    for name, neighbourhood_cleansed, latitude, longitude, longitude, room_type, minimum_maximum_nights, illegal in results:
+    for latitude, longitude, illegal, name, minimum_maximum_nights, room_type, neighbourhood_cleansed in results:
         mapping_dict = {}
-        mapping_dict["name"] = name
-        mapping_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
         mapping_dict["latitude"] = latitude
         mapping_dict["longitude"] = longitude
-        mapping_dict["room_type"] = room_type
+        mapping_dict["legal_status"] = illegal
+        mapping_dict["name"] = name
         mapping_dict["minimum_maximum_nights"] = minimum_maximum_nights
-        mapping_dict["illegal"] = illegal
+        mapping_dict["room_type"] = room_type
+        mapping_dict["neighbourhood"] = neighbourhood_cleansed
         all_mapping.append(mapping_dict)
 
     return jsonify(all_mapping)
