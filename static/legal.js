@@ -12,9 +12,7 @@ function buildPlot() {
       // Grab values from the data json object to build the plots
     //   var name = data.dataset.name;
     //   var stock = data.dataset.dataset_code;
-    //   var startDate = data.dataset.start_date;
-    //   var endDate = data.dataset.end_date;
-    //   var dates = unpack(data.dataset.data, 0);
+
     //   var closingPrices = unpack(data.dataset.data, 4);
   
     //   var trace1 = {
