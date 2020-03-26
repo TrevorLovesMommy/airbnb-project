@@ -1,6 +1,8 @@
 // api url found http://127.0.0.1:5000/api/v1.0/roomtypes";
 // d3 tag is id = #roomtype
 
+//real data to be uploaded today
+
 
 console.log("roomtype.js successfully called from static/js!")
 

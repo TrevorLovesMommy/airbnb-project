@@ -2,6 +2,9 @@
 // d3 tag is id="neighborhoods" for the chart
 // d3 tag is id="selNeighborhood" for the pulldown
 
+//we are still pending cleaned data, but you have enough dummy data to start coding
+//placeholder code below is to test/confirm d3 is working
+
 console.log("neighborhood.js successfully called from static/js!")
 
 d3.select("#neighborhoods").text("Hey, I changed this text with d3 from neighborhoods.js");
