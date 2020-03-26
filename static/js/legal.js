@@ -10,6 +10,16 @@
 
 console.log("legal.js successfully called from static/js folder!")
 
+d3.select("#roomtype").text("Hey, I changed this text with d3 from legal.js");
+
+d3.json("/api/v1.0/legal_illegal").then(function(data) {
+  console.log(data);
+})
+.catch(function(error) {
+  console.log("error in d3.json");
+});
+
+
 // d3.json("http://127.0.0.1:5000/api/v1.0/legal_illegal").then(function(data) {
 //     console.log(data);
 //   })
@@ -17,12 +27,6 @@ console.log("legal.js successfully called from static/js folder!")
 //     console.log("error in d3.json");
 //   });
 
-d3.json("/api/v1.0/legal_illegal").then(function(data) {
-    console.log(data);
-  })
-  .catch(function(error) {
-    console.log("error in d3.json");
-  });
 
 
 
