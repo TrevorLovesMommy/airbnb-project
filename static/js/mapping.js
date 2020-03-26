@@ -2,6 +2,8 @@
 // d3 tag is id = #mapping
 
 //Ilya, you have a config file in the same directory of mapping.js
+//The data you are working with is cleaned data.  
+// Placeholder code below is just confirm that data and d3 are working. 
 
 console.log("roomtype.js successfully called from static/js!")
 
