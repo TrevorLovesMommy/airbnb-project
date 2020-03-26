@@ -1,1 +1,1 @@
-console.log("roomtype.js successfully called!")
+console.log("roomtype.js successfully called from static/js!")

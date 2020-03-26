@@ -1,1 +1,0 @@
-console.log("roomtype.js successfully called!")
