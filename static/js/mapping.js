@@ -1,1 +1,1 @@
-console.log("mapping.js successfully called!")
+console.log("mapping.js successfully called from static/js folder!")

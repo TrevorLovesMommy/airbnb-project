@@ -1,1 +1,0 @@
-console.log("neighborhood.js successfully called!")

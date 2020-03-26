@@ -1,1 +1,1 @@
-console.log("neighborhood.js successfully called!")
+console.log("neighborhood.js successfully called from static/js!")
