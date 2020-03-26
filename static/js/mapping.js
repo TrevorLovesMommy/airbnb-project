@@ -1,6 +1,7 @@
 // api url found http://127.0.0.1:5000/api/v1.0/mapping";
 // d3 tag is id = #mapping
 
+//Ilya, you have a config file in the same directory of mapping.js
 
 console.log("roomtype.js successfully called from static/js!")
 
