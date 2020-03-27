@@ -107,12 +107,15 @@ def neighborhoods():
     # return jsonify(all_neighborhoods)
 
     all_neighborhoods = []
-    for neighbourhood_cleansed, room_type, count in results:
-        neighborhoods_dict = {}
-        neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
-        neighborhoods_dict["room_type"] = room_type
-        neighborhoods_dict["count"] = count
-        all_neighborhoods.append(neighborhoods_dict)
+    # for neighbourhood_cleansed, room_type, count in results:
+    #     neighborhoods_dict = {}
+    #     neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
+    #     neighborhoods_dict["room_type"] = room_type
+    #     neighborhoods_dict["count"] = count
+    #     all_neighborhoods.append(neighborhoods_dict)
+
+    for i in results:
+        all_neighborhoods.append(i)
 
     print(all_neighborhoods)
     return jsonify(all_neighborhoods)
