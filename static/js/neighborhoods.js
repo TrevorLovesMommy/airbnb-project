@@ -1,8 +1,12 @@
+
+
+
 // api url found http://127.0.0.1:5000/api/v1.0/neighborhoods"
 //  tag for the chart is  id="neighborhoods" 
 // tag for the pulldown is  id="selNeighborhood" 
-​
-​
+
+
+
 function getNeighborhoodInfo(neighborhood) {
     // read the data
     d3.json("/api/v1.0/neighborhoods").then((neighborhoodData) =>{
