@@ -66,7 +66,7 @@ def roomtypes():
 
     """Return a list of data for"""
     # Query all passengers
-    results = session.query(Grouped_roomtype.roomtype, Grouped_roomtype.count, Grouped_roomtype.percentage).all()
+    results = session.query(Grouped_roomtype.room_type, Grouped_roomtype.count, Grouped_roomtype.percentage).all()
 
     session.close()
 
