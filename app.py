@@ -103,7 +103,7 @@ def mapping():
     # Create our session (link) from Python to the DB
     session = Session(engine)
  
-    # query db for for all entire homes listings with lat long 
+    # query db for all entire homes listings with lat long 
     results = session.query(Mapping.latitude, Mapping.longitude, Mapping.illegal, Mapping.name, Mapping.minimum_maximum_nights, Mapping.room_type, Mapping.neighbourhood_cleansed).all()
 
     session.close()
