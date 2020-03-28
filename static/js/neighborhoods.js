@@ -1,69 +1,94 @@
-console.log("neighborhood.js successfully called from static/js!")
+
+// api url found http://127.0.0.1:5000/api/v1.0/neighborhoods"
 //  tag for the chart is  id="neighborhoods" 
 // tag for the pulldown is  id="selNeighborhood" 
 
-d3.json("/api/v1.0/neighborhoods").then(function(neighborhoodData) { 
-    console.log(neighborhoodData); 
-}); 
-//Assign the data from data.js to a variable
-//var neighborhoodData = data;
-//get reference to the button with the id "filter-btn"
- var button = d3.select("#filter-btn");
-// Get a reference to the table body
-var tbody = d3.select("tbody");
 
+function getNeighborhoodInfo(neighborhood) {
+    // read the data
+    d3.json("/api/v1.0/neighborhoods").then((neighborhoodData) =>{
+        console.log("neighborhood.js successfully called from static/js!")
+        console.log(neighborhoodData); 
+        // set initial parameters 
+    
+        var neighborhood = neighborhoodData[1];
 
-//populate talble with Neighborhood data
-function populateTable(info) {
-    tbody.html("");
-    console.log("in the populate table function");
-    info.forEach(function(neighborhoodData){
-        //use d3 to append one row per alien report
-        console.log("appending row");
-        var row = tbody.append("tr");
-        //use d3 to append a cell for each value in the alien report object
-        Object.entries(neighborhoodData).forEach(function([key,value]){
-            var cell=row.append("td");
-            //for every cell, pupluate the value
-            cell.text(value);
+        neighborhoodData.forEach(function(d){
+            d.neigborhoodCount = +d.neigborhoodCount[0];
+            d.neigborhoodRoomType= +d.neigborhoodRoomType[1];  
+       
+        console.log(neigborhoodCount);
+        console.log(neigborhoodRoomType);
+      
+        // --------------------------------- plot bar chart -----------------------------------
+
+        //create trace
+        var trace = {
+            x: neighborhoodRoomType,
+            y: neighborhoodCount,
+            //text: neighborhoodRoomType,
+            type: "bar",
+            orientation: "h"
+        };
+        // Create the data array for our plot
+        var data = [trace];  
+
+        //Define our plot layout
+        var layout = {
+          margin: {
+            l: 75,
+            r: 5,
+            t: 5,
+            b: 15
+          }
+        };
+           
+        //Plot the chart to a div tag with id "bar-plot"
+           Plotly.newPlot("neighborhoods", data, layout);
         });
     });
 }
-//Initial population of data
-populateTable(neighborhoodData);
-//--------use the "on" function in d3 and inline function to record an event--------
-button.on("click", function() {
-    console.log("a button was clicked");
- 
-    //get a reference to the input element on the page with the class "form-control"
-    var inputElement = d3.select(".form-control");
-    console.log(inputElement);
-    
-    // Use D3 to select the dropdown menu
-    var dropdownMenu = d3.select("#selNeighborhood");
-    // Assign the value of the dropdown menu option to a variable
-    var category = dropdownMenu.property("value");
-    //console.log(here is the category ${category});
-    //get the value property of the input element
-    var inputValue = inputElement.property("value");
-    //console.log(here's the input value ${inputValue});
-    if (category === 'datetime') {
-        var filteredData = neighborhoodData.filter(report => report.datetime === inputValue);
-    }
-    if (category === 'city') {
-        var filteredData = neighborhoodData.filter(report => report.city === inputValue);
-    }
-    if (category === 'state') {
-        var filteredData = neighborhoodData.filter(report => report.state === inputValue);
-    }
-    if (category === 'country') {
-        var filteredData = neighborhoodData.filter(report => report.country === inputValue);
-    }
-    
-    if (category === 'shape') {
-        var filteredData = neighborhoodData.filter(report => report.shape === inputValue);
-    }
-    populateTable(filteredData);
-}); 
 
-//.catch(function(error) { console.log("error in d3.json"); });
+
+    //Use D3 to create an event handler
+    d3.selectAll("#selNeighborhood").on("change", optionChanged);
+
+    function optionChanged(neighborhood) {
+        //use D3 to select the dropdown menu
+        var dropdownMenu = d3.selectAll("#selNeighborhood").node();
+        //assign the dropdown menu item ID to a variable.  This is the parent node
+        var dropdownMenuID = neighborhoodData.filter(meta => meta.neighborhoodData[1] === neighborhoodData)[1];
+        //assign the dropdown menu option to a variable.  This is the child node
+        var selectedID = dropdownMenu.value;
+
+        console.log(dropdownMenuID); //result is selNeighborhood
+        console.log(selectedID); //result is Mission, Nob Hill, etc.
+
+        //filter neighborhoodData to get count and room type for SF neighborhood
+        neighborhoodData.forEach(function(d){
+        d.neigborhoodCount = +d.neigborhoodCount[0];
+        d.neigborhoodRoomType= +d.neigborhoodRoomType[1];  
+        });
+    };
+
+    function init() {
+        // select dropdown menu 
+        var dropdown = d3.select("#selNeighborhood");
+      
+        // read the data 
+        d3.json("/api/v1.0/neighborhoods").then((neighborhoodData) => {
+            console.log(neighborhoodData);
+      
+            //filter neighborhoodData to get count and room type for SF neighborhood
+            neighborhoodData.forEach(function(d){
+            d.neigborhoodCount = +d.neigborhoodCount[1];
+            d.neigborhoodRoomType= +d.neigborhoodRoomType[2];  
+        });
+      
+            // call the functions to display the data and the plots to the page
+            getNeighborhoodInfo(neighborhood);
+            optionChanged(neighborhood);
+        });
+      }
+      
+      init();
