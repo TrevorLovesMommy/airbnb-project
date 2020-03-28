@@ -9,10 +9,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify, render_template
-# from flask_sqlalchemy import SQLAlchemy
-
 from flask import Flask, jsonify
-
 
 #################################################
 # Database Setup
@@ -35,7 +32,6 @@ Mapping = Base.classes.mapping
 #################################################
 app = Flask(__name__)
 
-
 #################################################
 # Flask Routes
 #################################################
@@ -54,9 +50,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    """Return the homepage."""
+    #return homepage
     return render_template("index.html")
-
 
 
 @app.route("/api/v1.0/roomtypes")
@@ -64,8 +59,7 @@ def roomtypes():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of data for"""
-    # Query all passengers
+    # query db for roomtype breakdown of SF Airbnb listings
     results = session.query(Grouped_roomtype.room_type, Grouped_roomtype.count, Grouped_roomtype.percentage).all()
 
     session.close()
@@ -87,24 +81,10 @@ def neighborhoods():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of data for"""
-    # Query all 
-    # results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
+    # query db for roomtype by neighborhood of SF Airbnb listings
     results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.entire_house, Grouped_neighborhoods.shared_room, Grouped_neighborhoods.private_room).all()
 
     session.close()
-
-    # Create a dictionary from the row data and append to a list of all_neighborhoods
-    # all_neighborhoods = []
-    # for neighbourhood_cleansed, room_type, count in results:
-    #     neighborhoods_dict = {}
-    #     neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
-    #     neighborhoods_dict["room_type"] = room_type
-    #     neighborhoods_dict["count"] = count
-    #     all_neighborhoods.append(neighborhoods_dict)
-
-    # print(all_neighborhoods)
-    # return jsonify(all_neighborhoods)
 
     all_neighborhoods = []
     for neighbourhood_cleansed, entire_house, shared_room, private_room in results:
@@ -122,15 +102,13 @@ def neighborhoods():
 def mapping():
     # Create our session (link) from Python to the DB
     session = Session(engine)
-
-    """Return a list of data for"""
-    # Query all lat long for legal and illegal listings
-
+ 
+    # query db for roomtype by neighborhood of SF Airbnb listings
     results = session.query(Mapping.latitude, Mapping.longitude, Mapping.illegal, Mapping.name, Mapping.minimum_maximum_nights, Mapping.room_type, Mapping.neighbourhood_cleansed).all()
 
     session.close()
 
-    # Create a dictionary from the row data and append to a list of all_roomtypes
+    # Create a dictionary from the row data and append to a list of mapping information
     all_mapping = []
     for latitude, longitude, illegal, name, minimum_maximum_nights, room_type, neighbourhood_cleansed in results:
         mapping_dict = {}
@@ -150,8 +128,7 @@ def legal_illegal():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of data for"""
-    # legal and illegal listings
+    # query db for legal vs. illegal entire homes of SF Airbnb listings
     results = session.query(Legal.legal_illegal, Legal.count, Legal.percentage).all()
 
     session.close()
@@ -167,33 +144,6 @@ def legal_illegal():
 
     print(all_legal_illegal)
     return jsonify(all_legal_illegal)
-
-
-
-#-----------------Titanic data for reference ----------------------    
-
-@app.route("/api/v1.0/titanic")
-def titanic():
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    """Return a list of passenger data including the name, age, and sex of each passenger"""
-    # Query all passengers
-    results = session.query(Passenger.name, Passenger.age, Passenger.sex).all()
-
-    session.close()
-
-    # Create a dictionary from the row data and append to a list of all_passengers
-    all_passengers = []
-    for name, age, sex in results:
-        passenger_dict = {}
-        passenger_dict["name"] = name
-        passenger_dict["age"] = age
-        passenger_dict["sex"] = sex
-        all_passengers.append(passenger_dict)
-
-    return jsonify(all_passengers)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
