@@ -90,7 +90,7 @@ def neighborhoods():
     """Return a list of data for"""
     # Query all 
     # results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
-    results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.room_type, Grouped_neighborhoods.count).all()
+    results = session.query(Grouped_neighborhoods.neighbourhood_cleansed, Grouped_neighborhoods.entire_house, Grouped_neighborhoods.shared_room, Grouped_neighborhoods.private_room).all()
 
     session.close()
 
@@ -107,15 +107,13 @@ def neighborhoods():
     # return jsonify(all_neighborhoods)
 
     all_neighborhoods = []
-    # for neighbourhood_cleansed, room_type, count in results:
-    #     neighborhoods_dict = {}
-    #     neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
-    #     neighborhoods_dict["room_type"] = room_type
-    #     neighborhoods_dict["count"] = count
-    #     all_neighborhoods.append(neighborhoods_dict)
-
-    for i in results:
-        all_neighborhoods.append(i)
+    for neighbourhood_cleansed, entire_house, shared_room, private_room in results:
+        neighborhoods_dict = {}
+        neighborhoods_dict["neighbourhood_cleansed"] = neighbourhood_cleansed
+        neighborhoods_dict["entire_house"] = entire_house
+        neighborhoods_dict["private_room"] = private_room
+        neighborhoods_dict["shared_room"] = shared_room
+        all_neighborhoods.append(neighborhoods_dict)
 
     print(all_neighborhoods)
     return jsonify(all_neighborhoods)
