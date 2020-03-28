@@ -28,28 +28,48 @@ d3.json("/api/v1.0/roomtypes").then(function(data) {
 
   anychart.onDocumentReady(function () {
     // create pie chart with passed data
-    var chart = anychart.pie([
-        ['Entire House', entireHouseCount],
-        ['Private Room', privateRoomCount],
-        ['Shared Room', sharedRoomCount]
-    ]);
+    // var chart = anychart.pie([
+    //     ['Entire House', entireHouseCount],
+    //     ['Private Room', privateRoomCount],
+    //     ['Shared Room', sharedRoomCount]
+    // ]);
 
-    // set chart title text settings
-    chart.title('ACME Corp. apparel sales through different retail channels')
-            // create empty area in pie chart
-            .innerRadius('40%');
+    // // set chart title text settings
+    // chart.title('ACME Corp. apparel sales through different retail channels')
+    //         // create empty area in pie chart
+    //         .innerRadius('40%');
 
-    // set chart labels position to outside
-    chart.labels().position('outside');
+    // // set chart labels position to outside
+    // chart.labels().position('outside');
 
-    // set container id for the chart
-    chart.container('roomtype');
-    // initiate chart drawing
-    chart.draw();
-});
+    // // set container id for the chart
+    // chart.container('roomtype');
+    // // initiate chart drawing
+    // chart.draw();
 
-  
+     // data set
+     var data = [
+      {x: "Entire House", value: entireHouseCount},
+      {x: "Private Room", value: privateRoomCount},
+      {x: "Shared Room", value: sharedRoomCount},
+  ];
 
+  // create and configure a pie chart
+  var chart1 = anychart.pie(data);
+  chart1.innerRadius("75%");
+
+  // create a bar chart
+  var chart2 = anychart.bar(data);
+
+  // set bar chart as the center content of a pie chart
+  chart1.center().content(chart2);
+
+  chart1.title("Room types on San Francisco Airbnb");
+  chart1.container("roomtype");
+  chart1.draw();
+
+
+  });
 });
 
   //   * ---------------------------------------
