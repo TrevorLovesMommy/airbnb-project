@@ -70,7 +70,7 @@
       <!------------------------------ start of roomtype --------------------------------------->
       <div class="row margin-top-50">
         <div class="col-md-12">
-          <h1>Room Type</h1>
+          <h1>Room Type on Airbnb</h1>
 
           <!-- div to hold chart -->
           <div id="roomtype" class="" style="width:1100px; height:500px;"></div>
@@ -79,27 +79,6 @@
           <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  blah </p>
         </div>
       </div>
-
-      <!-- <script>
-        anychart.onDocumentLoad(function () {
-          // create an instance of a pie chart
-          var chart = anychart.pie()
-          // set the data
-          chart.data([
-            ["Chocolate", 5],
-            ["Rhubarb compote", 2],
-            ["Crêpe Suzette", 2],
-            ["American blueberry", 2],
-            ["Buttermilk", 1]
-          ]);
-          // set chart title
-          chart.title("Top 5 pancake fillings");
-          // set the container element 
-          chart.container("roomtype");
-          // initiate chart display
-          chart.draw();
-        });
-      </script> -->
       <!------------------------------ end of roomtype --------------------------------------->          
 
       <!------------------------------ start of neighborhoods --------------------------------------->
@@ -149,11 +128,12 @@
         </div>
       </div>
       <!------------------------------ end of neighborhoods --------------------------------------->
+    
 
       <!------------------------------ start of mapping ----------------------------------------->
       <div class="row margin-top-50">
         <div class="col-md-12">
-          <h1>Mapping Legal and Illegal Entire Homesgit</h1>
+          <h1>Mapping Legal and Illegal Entire Homes</h1>
 
           <!-- div to hold map -->
           <div id="mapping" class="">
@@ -163,12 +143,37 @@
           <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  blah </p>
         </div>
       </div>
-      <!------------------------------ end of mapping ------------------------------------------->          
+      <!------------------------------ end of mapping ------------------------------------------->      
+      
+      <!------------------------------ Summary table ----------------------------------------->
+      <div class="row margin-top-50">
+        <div class="col-md-12">
+          <h1>Neighborhood Summary</h1>
+          <p>This is a placeholder for the neighborhood summary.  The order is off because jsonify reorders the keys alphabetically.</p>
+          <div id="table-area" class="" style="height:500px;overflow:auto;">
+
+            <table id="scrollingtable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">Neighborhood</th>
+                  <th class="table-head">Entire House</th>
+                  <th class="table-head">Private Room</th>
+                  <th class="table-head">Shared Room</th>
+                  <!-- <th class="table-head">Shape</th>
+                  <th class="table-head">Duration</th>
+                  <th class="table-head">Comments</th> -->
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+      </div>
+      <!------------------------------ end of mapping ------------------------------------------->   
 
       <!------------------------------ start of legal vs. illegal ----------------------------------------->
       <div class="row margin-top-50">
         <div class="col-md-12">
-          <h1>Legal vs. Illegal Entire Homes</h1>
+          <h1>Legal and Illegal Entire Homes compared to all SF listings</h1>
 
           <!-- div to hold chart -->
           <div id="legalstatus" class="" style="width:1100px; height:500px;"></div>
