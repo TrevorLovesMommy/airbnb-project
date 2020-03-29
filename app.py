@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify, render_template
-from flask import Flask, jsonify
 
 #################################################
 # Database Setup
@@ -47,12 +46,10 @@ app = Flask(__name__)
 #         f"/api/v1.0/legal_illegal<br/>"
 #     )
 
-
 @app.route("/")
 def index():
     #return homepage
     return render_template("index.html")
-
 
 @app.route("/api/v1.0/roomtypes")
 def roomtypes():
