@@ -1,6 +1,6 @@
-// api url found http://127.0.0.1:5000/api/v1.0/legal_illegal";
+// api url for jsonified data at http://127.0.0.1:5000/api/v1.0/legal_illegal";
 // d3 tag is id = "legalstatus"
-// pending cleaned data from Yulia
+
 
 
 console.log("legal.js successfully called from static/js folder!")
@@ -58,7 +58,7 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
     chart.padding([10, 40, 5, 20]);
 
     // set chart title text settings
-    chart.title('Legal and Illegal units compared to Total Listing and # of Entire Homes');
+    chart.title('Legal and Illegal Units Compared to Total Entire Home/Apt');
 
     // set scale minimum
     chart.yScale().minimum(0);
@@ -96,8 +96,8 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
     var series;
 
     // create first series with mapped data
-    series = chart.bar(seriesData_1);
-    setupSeries(series, 'Total Listings');
+    // series = chart.bar(seriesData_1);
+    // setupSeries(series, 'Total Listings');
 
     // create second series with mapped data
     series = chart.bar(seriesData_2);
@@ -146,13 +146,13 @@ d3.json("/api/v1.0/neighborhoods").then(function(tabledata) {
   tbody.html("");
   console.log("in the populate table function");
   tabledata.forEach(function(d){
-      //use d3 to append one row per alien report
+      //use d3 to append one row for each object in tabledata
       console.log("appending row");
       var row = tbody.append("tr");
-      //use d3 to append a cell for each value in the alien report object
+      //use d3 to append a cell for each entry (key.object pair) for an tabledata object
       Object.entries(d).forEach(function([key,value]){
           var cell=row.append("td");
-          //for every cell, pupluate the value
+          //for every cell, popluate the value as text
           cell.text(value);
       });
   });
@@ -160,6 +160,19 @@ d3.json("/api/v1.0/neighborhoods").then(function(tabledata) {
 
 
 })
+
+
+console.log("roomtype.js successfully called from static/js!")
+
+d3.select("#mapping").text("Hey, I changed this text with d3 from mapping.js");
+
+d3.json("/api/v1.0/neighborhoods").then(function(ndata) {
+  console.log("group neighborhood data here:")
+  console.log(ndata);
+})
+.catch(function(error) {
+  console.log("error in d3.json");
+});
 
 
 
