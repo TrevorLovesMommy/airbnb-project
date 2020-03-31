@@ -87,15 +87,6 @@ d3.json("/api/v1.0/roomtypes").then(function(data) {
         ['Airbnb Entire Home/Apt', entireHouseCount],
     ]);
 
-    // set series tooltip settings
-    // series.tooltip().titleFormat('{%X}');
-
-    // series.tooltip()
-    //         .position('center-top')
-    //         .anchor('center-bottom')
-    //         .offsetX(0)
-    //         .offsetY(5)
-    //         .format('${%Value}{groupsSeparator: }');
     series.tooltip().enabled(true).title().enabled(true).text("Information:");
     series.labels().enabled(true).anchor("top-center").position("top-center").fontSize(13);
 
