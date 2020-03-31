@@ -104,7 +104,7 @@ d3.json("/api/v1.0/roomtypes").then(function(data) {
     chart.yScale().minimum(0);
 
     // set yAxis labels formatter
-    chart.yAxis().labels().format('${%Value}{groupsSeparator: }');
+    chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
 
     // tooltips position and interactivity settings
     chart.tooltip().positionMode('point');
