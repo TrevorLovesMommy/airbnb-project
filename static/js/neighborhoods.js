@@ -1,97 +1,113 @@
+// api url found http://127.0.0.1:5000/api/v1.0/neighborhoods";
+// d3 tag is id="neighborhoods" for the chart
+// d3 tag is id="selNeighborhood" for the pulldown
 
+//we are still pending cleaned data, but you have enough dummy data to start coding
+//placeholder code below is to test/confirm d3 is working
 
-
-// api url found http://127.0.0.1:5000/api/v1.0/neighborhoods"
-//  tag for the chart is  id="neighborhoods" 
-// tag for the pulldown is  id="selNeighborhood" 
-
-
-
-function getNeighborhoodInfo(neighborhood) {
-    // read the data
-    d3.json("/api/v1.0/neighborhoods").then((neighborhoodData) =>{
-        console.log("neighborhood.js successfully called from static/js!")
-        console.log(neighborhoodData); 
-        // set initial parameters 
+function init() {
+    // Use D3 to select the dropdown menu
+      var dropdownMenu = d3.select("#selNeighborhood");
     
-        var neighborhood = neighborhoodData[1];
-​
-        neighborhoodData.forEach(function(d){
-            d.neigborhoodCount = +d.neigborhoodCount[0];
-            d.neigborhoodRoomType= +d.neigborhoodRoomType[1];  
-       
-        console.log(neigborhoodCount);
-        console.log(neigborhoodRoomType);
-      
-        // --------------------------------- plot bar chart -----------------------------------
-​
-        //create trace
-        var trace = {
-            x: neighborhoodRoomType,
-            y: neighborhoodCount,
-            //text: neighborhoodRoomType,
-            type: "bar",
-            orientation: "h"
-        };
-        // Create the data array for our plot
-        var data = [trace];  
-​
-        //Define our plot layout
-        var layout = {
-          margin: {
-            l: 75,
-            r: 5,
-            t: 5,
-            b: 15
-          }
-        };
-           
-        //Plot the chart to a div tag with id "bar-plot"
-           Plotly.newPlot("neighborhoods", data, layout);
-        });
+    //read newly reformatted data
+    d3.json("/api/v1.0/neighborhoods").then(function(neighborhoodData) {
+      console.log("this is data from neighborhoods.js")  
+      console.log(neighborhoodData);
+    
+    // get the neighborhood data to the dropdwown menu
+    neighborhoodData.forEach(function(d) {
+        dropdownMenu.append("option").text(d.neighbourhood_cleansed).property("value");
+        
+         
+    // Assign the value of the dropdown menu option to a variable
+        var selectedID = dropdownMenu.property("value");
+        console.log(selectedID);
+        
+     
+      //filter for SF neighborhood 
+      var filteredData = neighborhoodData.filter(d => d.neighbourhood_cleansed === selectedID);
+      console.log("This is the filteredData output for the specific SF neighborhood below");
+      console.log(filteredData);
+    
+      // get y axis data for Mission and convert from array to number
+      var entireHouseUnits = filteredData.map(d => d.entire_house);
+      var ehu=entireHouseUnits[0];
+      console.log(ehu);
+      var privateRoomUnits = filteredData.map(d => d.private_room);
+      var pru=privateRoomUnits[0];
+      console.log(pru);
+      var sharedRoomUnits = filteredData.map(d => d.shared_room);
+      var sru=sharedRoomUnits[0];
+      console.log(sru);
+    
+      // ------------- plot bar chart ---------
+      //create x axis and yaxis labels 
+      var trace1 = {
+          x: ['Entire Room', 'Private Room', 'Shared Room'],
+          y: [ehu, pru, sru],
+          type: 'bar'
+      };
+    
+      var data = [trace1]
+    
+      var layout = {
+          title: "Airbnb room type by neighborhood",
+          xaxis: {title: "Room Type"},
+         yaxis: {title: "Number of units"},
+         bargap: 0.25
+        
+      };
+    
+      Plotly.newPlot("neighborhoods", data, layout);
     });
-}
-​
-​
-    //Use D3 to create an event handler
-    d3.selectAll("#selNeighborhood").on("change", optionChanged);
-​
-    function optionChanged(neighborhood) {
-        //use D3 to select the dropdown menu
-        var dropdownMenu = d3.selectAll("#selNeighborhood").node();
-        //assign the dropdown menu item ID to a variable.  This is the parent node
-        var dropdownMenuID = neighborhoodData.filter(meta => meta.neighborhoodData[1] === neighborhoodData)[1];
-        //assign the dropdown menu option to a variable.  This is the child node
-        var selectedID = dropdownMenu.value;
-​
-        console.log(dropdownMenuID); //result is selNeighborhood
-        console.log(selectedID); //result is Mission, Nob Hill, etc.
-​
-        //filter neighborhoodData to get count and room type for SF neighborhood
-        neighborhoodData.forEach(function(d){
-        d.neigborhoodCount = +d.neigborhoodCount[0];
-        d.neigborhoodRoomType= +d.neigborhoodRoomType[1];  
-        });
+    
+    // Call updatePlotly() when a change takes place on the page
+    d3.selectAll("#selNeighborhood").on("change", updatePlotly);
+    
+    // This function is called when a dropdown menu item is selected
+    function updatePlotly() {
+        var dropdownMenu = d3.select("#selNeighborhood");
+    // Assign the value of the dropdown menu option to a variable
+    var selectedID = dropdownMenu.property("value");
+    console.log(selectedID);
+    
+    //filter for SF neighborhood 
+    var filteredData = neighborhoodData.filter(d => d.neighbourhood_cleansed === selectedID);
+     
+      // get y axis data for Mission and convert from array to number
+      var entireHouseUnits = filteredData.map(d => d.entire_house);
+      var ehu=entireHouseUnits[0];
+      console.log(ehu);
+      var privateRoomUnits = filteredData.map(d => d.private_room);
+      var pru=privateRoomUnits[0];
+      console.log(pru);
+      var sharedRoomUnits = filteredData.map(d => d.shared_room);
+      var sru=sharedRoomUnits[0];
+      console.log(sru);
+      
+    
+      var traceupdate = {
+        x: ['Entire Room', 'Private Room', 'Shared Room'],
+        y: [ehu, pru, sru],
+        type: 'bar'
     };
-​
-    function init() {
-        // select dropdown menu 
-        var dropdown = d3.select("#selNeighborhood");
+    
+    var dataupdate = [traceupdate]
+    
+    var layout = {
+        title: "Airbnb room type by neighborhood",
+        xaxis: {title: "Room Type"},
+       yaxis: {title: "Number of units"},
+       bargap: 0.25
       
-        // read the data 
-        d3.json("/api/v1.0/neighborhoods").then((neighborhoodData) => {
-            console.log(neighborhoodData);
-      
-            //filter neighborhoodData to get count and room type for SF neighborhood
-            neighborhoodData.forEach(function(d){
-            d.neigborhoodCount = +d.neigborhoodCount[1];
-            d.neigborhoodRoomType= +d.neigborhoodRoomType[2];  
-        });
-      
-            // call the functions to display the data and the plots to the page
-            getNeighborhoodInfo(neighborhood);
-            optionChanged(neighborhood);
-        });
-      }
-      
-      init();
+    };
+     
+      Plotly.newPlot("neighborhoods", dataupdate, layout);
+    
+    }
+    });
+        
+    }
+    
+    init();
+    
