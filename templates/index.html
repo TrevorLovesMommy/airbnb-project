@@ -51,11 +51,11 @@
       <div class="row margin-top-50">
         <div class="col-md-12">
           <h1>Background</h1>
-          <p>San Francisco is in a housing crisis.  The city's limited housing supply and unaffordable rents are squeezing out local residents.  Some critics blame short-term rentals on Airbnb for taking away already scarce housing from long-term rentals.</p>
+          <p class="pfont">San Francisco is in a housing crisis.  The city's limited housing supply and unaffordable rents are squeezing out local residents.  Some critics blame short-term rentals on Airbnb for taking away already scarce housing from long-term rentals.</p>
             
-          <p>For this project, we explore Airbnb's impact on the long-term housing supply through <a href="http://insideairbnb.com/get-the-data.html">Inside Airbnb's dataset</a>.  Inside Airbnb is an independant, non-commercial set of tools and data that helps us explore how Airbnb is being used.  They regularly scrape publicaly available information about Airbnb's listings.  The dataset we used was scraped from Airbnb's website on 3/14/2020.</p> 
-          <p>Our goal with this project is to understand the following:</p>
-          <ol>
+          <p class="pfont">For this project, we explore Airbnb's impact on the long-term housing supply through <a href="http://insideairbnb.com/get-the-data.html">Inside Airbnb's dataset</a>.  Inside Airbnb is an independant, non-commercial set of tools and data that helps us explore how Airbnb is being used.  They regularly scrape publicaly available information about Airbnb's listings.  The dataset we used was scraped from Airbnb's website on 3/14/2020.</p> 
+          <p class="pfont">Our goal with this project is to understand the following:</p>
+          <ol class="pfont">
             <li>Quantify Airbnb's affect on San Francisco's long-term rental supply</li>
             <li>Understand how Airbnb is being used in all San Francisco neighborhoods (because real estate is local)</li>
             <li>Identify and quantify illegally listed units in San Francisco (because illegal units owe the city 14% occupancy tax)</li>
@@ -69,12 +69,12 @@
         <div class="col-md-12">
           <h1>Room Types on Airbnb</h1>
           <!-- insights from chart -->
-          <p>An Airbnb hosts can list an entire home/apartment, private room or shared room.    61.2% of listings are entire home/apartment.  For the purposes of this analysis, we consider listings under the entire home/apartment category as dwelling units that can be added to the long-term rental stock.  The city of San Francisco defines dwelling units as apartments, condos or single family residences.</p>
+          <p class="pfont">An Airbnb hosts can list an entire home/apartment, private room or shared room.    61.2% of listings are entire home/apartment.  For the purposes of this analysis, we consider listings under the entire home/apartment category as dwelling units that can be added to the long-term rental stock.  The city of San Francisco defines dwelling units as apartments, condos or single family residences.</p>
 
           <!-- div to hold donut chart -->
           <div id="roomtype" class="" style="width:1150px; height:500px;"></div>
 
-          <p style='margin-top: 2.5em; margin-bottom: 2.5em;'>According to the San Francisco Planning department, there are 394,615 dwelling units in San Francisco [<a href="https://default.sfplanning.org/publications_reports/2018_Housing_Inventory.pdf">1</a>]. Two-thirds of these dwelling units (263,077 units) are used as long-term rentals [<a href="https://housing.datasf.org/overview/">2</a>].  If all Airbnb entire homes/apartments were converted to long-term rentals, it would increase long-term rental supply by 4,822 units, a 1.8% increase.</p> 
+          <p class="pfont" style='margin-top: 2.5em; margin-bottom: 2.5em;'>According to the San Francisco Planning department, there are 394,615 dwelling units in San Francisco [<a href="https://default.sfplanning.org/publications_reports/2018_Housing_Inventory.pdf">1</a>]. Two-thirds of these dwelling units (263,077 units) are used as long-term rentals [<a href="https://housing.datasf.org/overview/">2</a>].  If all Airbnb entire homes/apartments were converted to long-term rentals, it would increase long-term rental supply by 4,822 units, a 1.8% increase.</p> 
           <!-- div to hold stacked bar chart -->
           <div id="longtermrentals" class="" style="width:1150px; height:500px;"></div>
 
@@ -87,7 +87,7 @@
         <div class="col-md-12">
           <h1>Room Types by Neighborhoods</h1>
           
-          <p>Real estate can vary widely by location.  The same can be said about Airbnb inventory.  Most long-term rental units are concentrated in the north eastern portion of San Francisco[<a href="https://housing.datasf.org/overview/">3</a>].  So are Airbnb listings.   There are more Airbnb listing of all room types in the north eastern part of the city than the western part of the city. </p>
+          <p class="pfont">Real estate can vary widely by location.  The same can be said about Airbnb inventory.  Most long-term rental units are concentrated in the north eastern portion of San Francisco[<a href="https://housing.datasf.org/overview/">3</a>].  So are Airbnb listings.   There are more Airbnb listing of all room types in the north eastern part of the city than the western part of the city. </p>
         </div>
         <div class="col-md-3">
           <aside class="filters">
@@ -129,8 +129,8 @@
       <!------------------------------ Summary table ------------------------------------------->
       <div class="row margin-top-50">
         <div class="col-md-12">
-          <h1>Neighborhood Summary</h1>
-          <p>This is a placeholder for the neighborhood summary.  The order is off because jsonify reorders the keys alphabetically.</p>
+          <h1>Neighborhood Room Type Summary</h1>
+          <p class="pfont">This is a placeholder for the neighborhood summary.  The order is off because jsonify reorders the keys alphabetically.</p>
           <div id="table-area" class="" style="height:500px;overflow:auto;">
 
             <table id="scrollingtable" class="table table-striped">
@@ -157,7 +157,7 @@
         <div class="col-md-12">
           <h1 style='margin-top: 2.5em'>Legal and Illegal Entire Home/Apt</h1>
 
-          <p>Under <a href="https://shorttermrentals.sfgov.org/about">San Francisco's short-term rental ordinance</a>, a homeowner may legally rent his or her home on a short term bases under the following conditions: </p>
+          <p class="pfont">Under <a href="https://shorttermrentals.sfgov.org/about">San Francisco's short-term rental ordinance</a>, a homeowner may legally rent his or her home on a short term bases under the following conditions: </p>
           <ol>
             <li>Must be a permanant San Francisco resident</li>
             <li>Have liability insurance with at least $500,000 coverage</li>
@@ -166,7 +166,7 @@
             <li>Comply with 90-day rental limit</li>
             <li>Pay a 14% Transient Occupancy Tax</li>
           </ol>
-          <p>Inside Airbnb's dataset provides information that helped us identify illegal listings that violate #5 (available more than 90 days) and #4 (missing short term rental certificate).  80% of entire home/apt violate these 2 requirements.  Entire homes that are highly available year round and illegal probably cater to year-round tourists and may displace local residents.  Homeowners of illegal units may also owe San Francisco a 14% occupancy tax of all revenue booked through Airbnb.</p>
+          <p class="pfont">Inside Airbnb's dataset provides information that helped us identify illegal listings that violate #5 (available more than 90 days) and #4 (missing short term rental certificate).  80% of entire home/apt violate these 2 requirements.  Entire homes that are highly available year round and illegal probably cater to year-round tourists and may displace local residents.  Homeowners of illegal units may also owe San Francisco a 14% occupancy tax of all revenue booked through Airbnb.</p>
 
           <!-- div to hold chart -->
           <div id="legalstatus" class="" style="width:1100px; height:500px;"></div>
@@ -185,7 +185,7 @@
 
           <!-- div to hold map -->
           <div id="mapping" class="">
-            <p>Ilyas's map goes here. Your id to call in your js is id="mapping"</p>
+            <p class="pfont">Ilyas's map goes here. Your id to call in your js is id="mapping"</p>
           </div>
         </div>
       </div>
