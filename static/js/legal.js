@@ -135,7 +135,7 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
 });
 
 
-// ------------------------------- Testing Scrolling Table ----------------------
+// ------------------------------- Neighborhood Scrolling Table ----------------------
 
 var tbody = d3.select("tbody"); 
 
@@ -150,7 +150,15 @@ d3.json("/api/v1.0/neighborhoods").then(function(tabledata) {
       console.log("appending row");
       var row = tbody.append("tr");
       //use d3 to append a cell for each entry (key.object pair) for an tabledata object
-      Object.entries(d).forEach(function([key,value]){
+      var obj = Object.values(d);  //array of values in each rows
+
+      var item2 = obj.splice(1,1)[0];  //pop out neighborhood column
+      obj.unshift(item2);
+
+      console.log(obj);
+      // console.log(item2);
+
+      obj.forEach(function(value){
           var cell=row.append("td");
           //for every cell, popluate the value as text
           cell.text(value);

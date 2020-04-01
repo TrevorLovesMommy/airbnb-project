@@ -126,7 +126,7 @@ def legal_illegal():
     session = Session(engine)
 
     # query db for legal vs. illegal entire homes of SF Airbnb listings
-    results = session.query(Legal.legal_illegal, Legal.count, Legal.percentage).all()
+    results = session.query(Legal.illegal, Legal.count, Legal.percentage).all()
 
     session.close()
 
