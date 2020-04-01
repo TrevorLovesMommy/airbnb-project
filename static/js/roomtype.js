@@ -4,8 +4,10 @@
 //global variables
 //data for sfHousingStock from https://default.sfplanning.org/publications_reports/2018_Housing_Inventory.pdf
 var sfHousingStock = 394615;
-//two thirds of housing stock is used for long term rentals.  https://housing.datasf.org/overview/
+//two thirds of housing stock is used for long term rentals https://housing.datasf.org/overview/
 var ltRentalStock = Math.round((sfHousingStock*2)/3);
+var totalCount = 0
+var entireHouseCount = 0
 
 console.log(sfHousingStock)
 console.log(ltRentalStock)
