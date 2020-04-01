@@ -43,7 +43,7 @@ function init() {
       // ------------- plot bar chart ---------
       //create x axis and yaxis labels 
       var trace1 = {
-          x: ['Entire Room', 'Private Room', 'Shared Room'],
+          x: ['Entire House/Apt', 'Private Room', 'Shared Room'],
           y: [ehu, pru, sru],
           type: 'bar'
       };
@@ -87,7 +87,7 @@ function init() {
       
     
       var traceupdate = {
-        x: ['Entire Room', 'Private Room', 'Shared Room'],
+        x: ['Entire House/Apt', 'Private Room', 'Shared Room'],
         y: [ehu, pru, sru],
         type: 'bar'
     };
