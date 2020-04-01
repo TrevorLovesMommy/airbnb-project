@@ -152,8 +152,8 @@ d3.json("/api/v1.0/neighborhoods").then(function(tabledata) {
       //use d3 to append a cell for each entry (key.object pair) for an tabledata object
       var obj = Object.values(d);  //array of values in each rows
 
-      var item2 = obj.splice(1,1)[0];  //pop out neighborhood column
-      obj.unshift(item2);
+      var item2 = obj.splice(1,1)[0];  //we removed and stored index 1 (column2) and change original pop out neighborhood column
+      obj.unshift(item2); //puts back in the first position, the beginning of the aray (colum1)
 
       console.log(obj);
       // console.log(item2);
