@@ -113,7 +113,7 @@ def mapping():
     # Create a dictionary from the row data and append to a list of all_roomtypes
     all_mapping = []
     for latitude, longitude, illegal, name, minimum_maximum_nights, room_type, neighbourhood_cleansed in results:
-        # Ilya and Justin refactored to be GeoJSON format
+        # Refactored to be GeoJSON format
         mapping_dict = {
             "type": "Feature",
             "geometry": {
@@ -123,8 +123,6 @@ def mapping():
             "properties": {}
         }
         properties = mapping_dict["properties"]
-        #mapping_dict["latitude"] = latitude
-        #mapping_dict["longitude"] = longitude
         properties["legal_status"] = illegal
         properties["name"] = name
         properties["minimum_maximum_nights"] = minimum_maximum_nights
@@ -134,31 +132,6 @@ def mapping():
 
     return jsonify(all_mapping)
 
-
-# @app.route("/api/v1.0/mapping")
-# def mapping():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
- 
-#     # query db for all entire homes listings with lat long 
-#     results = session.query(Mapping.latitude, Mapping.longitude, Mapping.illegal, Mapping.name, Mapping.minimum_maximum_nights, Mapping.room_type, Mapping.neighbourhood_cleansed).all()
-
-#     session.close()
-
-#     # Create a dictionary from the row data and append to a list of mapping information
-#     all_mapping = []
-#     for latitude, longitude, illegal, name, minimum_maximum_nights, room_type, neighbourhood_cleansed in results:
-#         mapping_dict = {}
-#         mapping_dict["latitude"] = latitude
-#         mapping_dict["longitude"] = longitude
-#         mapping_dict["legal_status"] = illegal
-#         mapping_dict["name"] = name
-#         mapping_dict["minimum_maximum_nights"] = minimum_maximum_nights
-#         mapping_dict["room_type"] = room_type
-#         mapping_dict["neighbourhood"] = neighbourhood_cleansed
-#         all_mapping.append(mapping_dict)
-
-#     return jsonify(all_mapping)
 
 @app.route("/api/v1.0/legal_illegal")
 def legal_illegal():
