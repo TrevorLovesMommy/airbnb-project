@@ -57,7 +57,11 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-
+# Test route for developing map
+@app.route("/map/test")
+def map_test():
+    """Return the homepage."""
+    return render_template("map.html")
 
 @app.route("/api/v1.0/roomtypes")
 def roomtypes():
@@ -132,14 +136,23 @@ def mapping():
     # Create a dictionary from the row data and append to a list of all_roomtypes
     all_mapping = []
     for latitude, longitude, illegal, name, minimum_maximum_nights, room_type, neighbourhood_cleansed in results:
-        mapping_dict = {}
-        mapping_dict["latitude"] = latitude
-        mapping_dict["longitude"] = longitude
-        mapping_dict["legal_status"] = illegal
-        mapping_dict["name"] = name
-        mapping_dict["minimum_maximum_nights"] = minimum_maximum_nights
-        mapping_dict["room_type"] = room_type
-        mapping_dict["neighbourhood"] = neighbourhood_cleansed
+        # Ilya and Justin refactored to be GeoJSON format
+        mapping_dict = {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+            "coordinates": [longitude, latitude]
+            },
+            "properties": {}
+        }
+        properties = mapping_dict["properties"]
+        #mapping_dict["latitude"] = latitude
+        #mapping_dict["longitude"] = longitude
+        properties["legal_status"] = illegal
+        properties["name"] = name
+        properties["minimum_maximum_nights"] = minimum_maximum_nights
+        properties["room_type"] = room_type
+        properties["neighbourhood"] = neighbourhood_cleansed
         all_mapping.append(mapping_dict)
 
     return jsonify(all_mapping)
