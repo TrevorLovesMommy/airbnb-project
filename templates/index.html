@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   crossorigin=""/>
+
+  
   <!-- D3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -38,25 +40,19 @@
 
 
 
-
-
-
-
-
-
 <!-- ilya -->
    <!-- Leaflet CSS -->
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+   <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-   crossorigin=""/>
+   crossorigin=""/> -->
   
    <!-- Leaflet JavaScript -->
-   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+   <!-- <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-   crossorigin=""></script>
+   crossorigin=""></script> -->
   
    <!--D3 -->
-   <script src="https://d3js.org/d3.v5.min.js"></script>
+   <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
   
    <!-- Our CSS -->
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,7 +201,7 @@
           <h1>Mapping Legal and Illegal Entire Home/Apt</h1>
           
           <!-- div to hold map -->
-          <div id="map" class="">
+          <div id="map" class="" style="width:1100px; height:1000px;">
             <p class="pfont">Ilyas's map goes here. Your id to call in your js is id="mapping"</p>
           </div>
         </div>
@@ -219,7 +215,7 @@
           
           <!-- div to hold map -->
           <div id="" class="">
-            <p class="pfont">Based on the data, we believe that Airbnb has a minimal affect on Airbnb's long-term rental supply.  Entire Homes/Apt on Airbnb would increase long-term rental supply 1.8%.  If San Francisco didn't enact the short-term rental ordinance, we believe we would see the following trends:</p>
+            <p class="pfont">Based on the data, we believe that Airbnb has a minimal affect on Airbnb's long-term rental supply.  Entire Homes/Apt on Airbnb would increase long-term rental supply 1.8%.  We believe San Franciso's short-term rental ordinance ha    . . . . If San Francisco didn't enact the short-term rental ordinance, we believe we would see the following trends:</p>
             <ol class="pfont">
               <li>listing with longer availability more than 90 days</li>
               <li>more entire house/apt listed on Airbnb</li>
@@ -227,7 +223,7 @@
           </div>
         </div>
       </div>
-      <!------------------------------ end of mapping ------------------------------------------>    
+      <!------------------------------ end of summary ------------------------------------------>    
       
     </div>
   </div>
@@ -238,13 +234,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
+
+
+  <!-- API Key -->
+  <script type="text/javascript" src="../static/js/config.js"></script>
+    
   <!-- javascripts - always put these scripts last -->
-
-    <!-- API Key -->
-    <script type="text/javascript" src="../static/js/config.js"></script>
-    <!-- Our JS -->
-    <script type="text/javascript" src="../static/js/mapping.js"></script>
-
+  <script type="text/javascript" src="../static/js/mapping.js"></script>
   <script src="../static/js/roomtype.js"></script>
   <script src="../static/js/legal.js"></script> 
   <!-- <script src="../static/js/mapping.js"></script> -->
