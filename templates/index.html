@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   crossorigin=""/>
-
-  
   <!-- D3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -27,8 +25,6 @@
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
   integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
   crossorigin=""></script>
-  <!-- API Key -->
-  <!-- <script type="text/javascript" src="../static/js/config.js"></script> -->
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <!-- plotly -->
@@ -77,12 +73,12 @@
           <h1>Background</h1>
           <p class="pfont">San Francisco is in a housing crisis.  The city's limited housing supply and unaffordable rents are squeezing out local residents.  Some critics blame short-term rentals on Airbnb for taking away already scarce housing from long-term rentals.</p>
             
-          <p class="pfont">For this project, we explore Airbnb's impact on the long-term housing supply through <a href="http://insideairbnb.com/get-the-data.html">Inside Airbnb's dataset</a>.  Inside Airbnb is an independant, non-commercial set of tools and data that helps us explore how Airbnb is being used.  They regularly scrape publicaly available information about Airbnb's listings.  The dataset we used was scraped from Airbnb's website on 3/14/2020.</p> 
+          <p class="pfont">For this project, we explore Airbnb's impact on the long-term rental supply through <a href="http://insideairbnb.com/get-the-data.html">Inside Airbnb's dataset</a>.  Inside Airbnb is an independant, non-commercial set of tools and data that helped us explore how Airbnb is being used.  They regularly scrape publicaly available information about Airbnb's listings.  The dataset we used was scraped from Airbnb's website on 3/14/2020.</p> 
           <p class="pfont">Our goal with this project is to understand the following:</p>
           <ol class="pfont">
             <li>Quantify Airbnb's affect on San Francisco's long-term rental supply</li>
             <li>Understand how Airbnb is being used in all San Francisco neighborhoods (because real estate is local)</li>
-            <li>Identify and quantify illegally listed units in San Francisco (because illegal units owe the city 14% occupancy tax)</li>
+            <li>Identify and quantify illegally listed units in San Francisco (because illegal units may displace local residents)</li>
           </ol>
         </div>
       </div>
@@ -93,12 +89,12 @@
         <div class="col-md-12">
           <h1>Room Types on Airbnb</h1>
           <!-- insights from chart -->
-          <p class="pfont">An Airbnb hosts can list an entire home/apartment, private room or shared room.    61.2% of listings are entire home/apartment.  For the purposes of this analysis, we consider listings under the entire home/apartment category as dwelling units that can be added to the long-term rental stock.  The city of San Francisco defines dwelling units as apartments, condos or single family residences.</p>
+          <p class="pfont">An Airbnb hosts can list an entire home/apartment, private room or shared room.    61.2% of listings are entire home/apartment.  For the purposes of this analysis, we consider listings under the entire home/apartment category as dwelling units that can be added to the long-term rental stock.  The San Francisco Planning Department defines dwelling units as apartments, condos or single family residences.</p>
 
           <!-- div to hold donut chart -->
           <div id="roomtype" class="" style="width:1150px; height:500px;"></div>
 
-          <p class="pfont" style='margin-top: 2.5em; margin-bottom: 2.5em;'>According to the San Francisco Planning department, there are 394,615 dwelling units in San Francisco [<a href="https://default.sfplanning.org/publications_reports/2018_Housing_Inventory.pdf">1</a>]. Two-thirds of these dwelling units (263,077 units) are used as long-term rentals [<a href="https://housing.datasf.org/overview/">2</a>].  If all Airbnb entire homes/apartments were converted to long-term rentals, it would increase long-term rental supply by 4,822 units, a 1.8% increase.</p> 
+          <p class="pfont" style='margin-top: 2.5em; margin-bottom: 2.5em;'>According to a 2019 Housing Report from the Planning Department, there are 399,313 dwelling units in San Francisco [<a href="https://default.sfplanning.org/publications_reports/2019_Housing_Inventory.pdf">1</a>]. Two-thirds of these dwelling units (266,209 units) are used as long-term rentals [<a href="https://housing.datasf.org/overview/">2</a>].  If all Airbnb entire homes/apartments were converted to long-term rentals, it would increase long-term rental supply by 4,822 units, a 1.8% increase.</p> 
           <!-- div to hold stacked bar chart -->
           <div id="longtermrentals" class="" style="width:1150px; height:500px;"></div>
 
@@ -154,7 +150,7 @@
       <div class="row margin-top-50">
         <div class="col-md-12">
           <h1>Neighborhood Room Type Summary</h1>
-          <p class="pfont">This is a placeholder for the neighborhood summary.  The order is off because jsonify reorders the keys alphabetically.</p>
+          <p class="pfont">Here's a summary table of room types by neighborhood.</p>
           <div id="table-area" class="" style="height:500px;overflow:auto;">
 
             <table id="scrollingtable" class="table table-striped">
@@ -179,17 +175,19 @@
         <div class="col-md-12">
           <h1 style='margin-top: 2.5em'>Legal and Illegal Entire Home/Apt</h1>
 
-          <p class="pfont">Under <a href="https://shorttermrentals.sfgov.org/about">San Francisco's short-term rental ordinance</a>, a homeowner may legally rent his or her home on a short term bases under specific conditions.  Here are some of the requirements: </p>
+          <p class="pfont">Under <a href="https://shorttermrentals.sfgov.org/about">San Francisco's short-term rental ordinance</a>, a homeowner may legally rent his or her home on a short term basis under specific conditions.  Here are some of the requirements: </p>
           <ol class="pfont">
             <li>Must be a permanant San Francisco resident</li>
             <li>Obtain a short term rental certificate from the Office of Short-Term Rentals</li>
             <li>Comply with 90-day rental limit</li>
             <li>Pay a 14% Transient Occupancy Tax</li>
           </ol>
-          <p class="pfont">Inside Airbnb's dataset provides information that helped us identify illegal listings that violate #3 (available more than 90 days) and #2 (missing short term rental certificate).  80% of entire home/apt violate these 2 requirements.  Entire homes that are highly available year round and illegal probably cater to year-round tourists and may displace local residents.  Homeowners of illegal units may also owe San Francisco a 14% occupancy tax of all revenue booked through Airbnb.</p>
+          <p class="pfont">Inside Airbnb's dataset provides information that helped us identify illegal listings that violate #3 (available more than 90 days) and #2 (missing short term rental certificate).  80% of entire home/apt violate these 2 requirements.  Entire homes that are highly available year round and illegal probably cater to year-round tourists and may displace local residents.  We believe most homeowners who list illegally probably make more money renting short-term on Airbnb than renting to a long-term tenant.</p>
+            
+          <p class="pfont">Homeowners of illegal units may also owe a 14% occupancy tax of all revenue booked through Airbnb.  For San Francisco, the occupancy tax is a significant revenue stream.  In 2016, the city collected just under $400 million in occupancy tax. [<a href="https://www.epi.org/publication/the-economic-costs-and-benefits-of-airbnb-no-reason-for-local-policymakers-to-let-airbnb-bypass-tax-or-regulatory-obligations/">4</a>].</p>
 
           <!-- div to hold chart -->
-          <div id="legalstatus" class="" style="width:1100px; height:500px;"></div>
+          <div id="legalstatus" class="" style="width:1150px; height:500px;"></div>
 
         </div>
       </div>
@@ -199,10 +197,10 @@
       <div class="row margin-top-50">
         <div class="col-md-12">
           <h1>Mapping Legal and Illegal Entire Home/Apt</h1>
+          <p class="pfont">Here's a map that shows legal and illegal entire homes/apt.</p>
           
           <!-- div to hold map -->
-          <div id="map" class="" style="width:1100px; height:1000px;">
-            <p class="pfont">Ilyas's map goes here. Your id to call in your js is id="mapping"</p>
+          <div id="map" class="" style="width:1150px; height:1000px;">
           </div>
         </div>
       </div>
@@ -213,21 +211,27 @@
         <div class="col-md-12">
           <h1>Summary</h1>
           
-          <!-- div to hold map -->
-          <div id="" class="">
-            <p class="pfont">Based on the data, we believe that Airbnb has a minimal affect on Airbnb's long-term rental supply.  Entire Homes/Apt on Airbnb would increase long-term rental supply 1.8%.  We believe San Franciso's short-term rental ordinance ha    . . . . If San Francisco didn't enact the short-term rental ordinance, we believe we would see the following trends:</p>
+            <p class="pfont">If San Francisco didn't enact the short-term rental ordinance, we believe we would see the following trends:</p>
             <ol class="pfont">
-              <li>listing with longer availability more than 90 days</li>
-              <li>more entire house/apt listed on Airbnb</li>
+              <li>More listings with availability over 90 days.  A homeowner can make more money renting on Airbnb than renting to a long term tenant.</li>
+              <li>More entire house/apt listed on Airbnb.</li>
             </ol>
-          </div>
+            <p class="pfont">Based on the data, we believe that Airbnb has a minimal affect on San Francisco's long-term rental supply.  Converting entire Homes/Apt on Airbnb  to long-term rentals would increase the overall long-term rental supply 1.8%.  Looking at the total legal listings of entire homes/apt, San Francisco's ordinance may be keeping this short-term rental supply relatively low compared to all San Francisco dwelling units.  As for the illegal units, there's an opportunity for San Francisco to pursue these units for over due occupancy tax and force them to comply with the short-term ordinance.</p>
+
+            <p>Footnotes<br>
+            [1] <a href="https://default.sfplanning.org/publications_reports/2019_Housing_Inventory.pdf">2019 San Francisco Housing Inventory</a><br>
+            [2] <a href="https://housing.datasf.org/overview/">SF Housing Data Hub</a><br>
+            [3] <a href="https://housing.datasf.org/overview/">SF Housing Data Hub</a><br>    
+            [4] <a href="https://www.epi.org/publication/the-economic-costs-and-benefits-of-airbnb-no-reason-for-local-policymakers-to-let-airbnb-bypass-tax-or-regulatory-obligations/">Economic Policy Institute</a><br>      
+          </p>
+
+
         </div>
       </div>
       <!------------------------------ end of summary ------------------------------------------>    
       
     </div>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
