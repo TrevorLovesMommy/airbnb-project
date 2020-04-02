@@ -1,3 +1,6 @@
+# To run this app, go to git bash, go to the directory that holds this file and type python app.python
+# In a chrome browser, for the url, enter http://127.0.0.1:5000/
+
 import os
 
 import pandas as pd
