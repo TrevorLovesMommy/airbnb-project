@@ -1,11 +1,4 @@
 // api url for jsonified data at http://127.0.0.1:5000/api/v1.0/legal_illegal";
-// d3 tag is id = "legalstatus"
-
-
-
-console.log("legal.js successfully called from static/js folder!")
-
-
 
 d3.json("/api/v1.0/legal_illegal").then(function(data) {
   console.log('here is the legal data');
@@ -31,10 +24,8 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
   anychart.onDocumentReady(function () {
     // create data set on our data
     var dataSet = anychart.data.set([
-        ['units', 8472, 4822, 3846, 976],
-        // ['units', 6814, 3054, 4376, 4229],
-        // ['Eyebrow pencil', 7012, 5067, 8987, 3932],
-        // ['Lipstick', 8814, 9054, 4376, 9256]
+        ['units', 8472, 4822, illegalCount, legalCount],
+
     ]);
 
     // map data for the first series, take x from the zero column and value from the first column of data set
@@ -147,16 +138,14 @@ d3.json("/api/v1.0/neighborhoods").then(function(tabledata) {
   console.log("in the populate table function");
   tabledata.forEach(function(d){
       //use d3 to append one row for each object in tabledata
-      console.log("appending row");
       var row = tbody.append("tr");
       //use d3 to append a cell for each entry (key.object pair) for an tabledata object
       var obj = Object.values(d);  //array of values in each rows
-
-      var item2 = obj.splice(1,1)[0];  //we removed and stored index 1 (column2) and change original pop out neighborhood column
-      obj.unshift(item2); //puts back in the first position, the beginning of the aray (colum1)
-
-      console.log(obj);
-      // console.log(item2);
+      //switch column 1 and 2 because Jsonified data orders the key/values alphabetically
+      //we removed and stored index 1 (column2) and change original pop out neighborhood column
+      var item2 = obj.splice(1,1)[0];  
+      //puts back in the first position, the beginning of the aray (colum1)
+      obj.unshift(item2); 
 
       obj.forEach(function(value){
           var cell=row.append("td");

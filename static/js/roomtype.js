@@ -6,31 +6,15 @@
 var sfHousingStock = 394615;
 //two thirds of housing stock is used for long term rentals https://housing.datasf.org/overview/
 var ltRentalStock = Math.round((sfHousingStock*2)/3);
-var totalCount = 0
-var entireHouseCount = 0
-
-console.log(sfHousingStock)
-console.log(ltRentalStock)
 
 //read jasonofied data from app route http://127.0.0.1:5000/api/v1.0/roomtypes
 d3.json("/api/v1.0/roomtypes").then(function(data) {
-  console.log("here is the data");
   console.log(data);
 
   var unitCount = data.map(d=>d.count);
-  console.log(`this is the count ${unitCount}`);
-
   var entireHouseCount = unitCount[0];
-  console.log(`this is the entirehouse count ${entireHouseCount}`) 
-
   var privateRoomCount = unitCount[1];
-  console.log(`this is the privateroom count ${privateRoomCount}`) 
-
   var sharedRoomCount = unitCount[2];
-  console.log(`this is the shared room count ${sharedRoomCount}`) 
-
-
-  //Ask Justin how to make totalCount global so I can use it in legal.js
   var totalCount = entireHouseCount + privateRoomCount + sharedRoomCount;
   var chartTitle = (`Room Types on SF Airbnb (Total ${totalCount})`);
 
