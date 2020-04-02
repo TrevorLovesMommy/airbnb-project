@@ -3,7 +3,7 @@
 
 //global variables
 //data for sfHousingStock from https://default.sfplanning.org/publications_reports/2018_Housing_Inventory.pdf
-var sfHousingStock = 394615;
+var sfHousingStock = 399313;
 //two thirds of housing stock is used for long term rentals https://housing.datasf.org/overview/
 var ltRentalStock = Math.round((sfHousingStock*2)/3);
 
@@ -64,7 +64,7 @@ d3.json("/api/v1.0/roomtypes").then(function(data) {
     chart.animation(true);
 
     // set chart title text settings
-    chart.title('Airbnb Entire House/Apt compared to Long Term Rental Stock');
+    chart.title('Airbnb Entire House/Apt compared to Long-Term Rental Stock');
 
     // create area series with passed data
     var series = chart.column([
