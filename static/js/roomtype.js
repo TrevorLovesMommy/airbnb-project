@@ -64,7 +64,7 @@ d3.json("/api/v1.0/roomtypes").then(function(data) {
     chart.animation(true);
 
     // set chart title text settings
-    chart.title('Airbnb Entire Home/Apt compared to Long Term Rental Stock');
+    chart.title('Airbnb Entire House/Apt compared to Long Term Rental Stock');
 
     // create area series with passed data
     var series = chart.column([

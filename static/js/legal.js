@@ -49,7 +49,7 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
     chart.padding([10, 40, 5, 20]);
 
     // set chart title text settings
-    chart.title('Legal and Illegal Units Compared to Total Entire Home/Apt');
+    chart.title('Legal and Illegal Units Compared to Total Entire House/Apt');
 
     // set scale minimum
     chart.yScale().minimum(0);
@@ -92,7 +92,7 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
 
     // create second series with mapped data
     series = chart.bar(seriesData_2);
-    setupSeries(series, 'Entire Homes');
+    setupSeries(series, 'Entire House/Apt');
 
     // create third series with mapped data
     series = chart.bar(seriesData_3);
