@@ -14,6 +14,8 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
   var illegalCount = filteredIllegal.map(d => d.count);
   console.log(`illegal count is ${illegalCount}`);
 
+  console.log(`this is entire house count ${entireHouseCount}`);
+
   //   * ---------------------------------------
   //   * This chart was created using Anychart.
   //   * 
@@ -120,10 +122,8 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
     chart.draw();
   });
 
-})
-.catch(function(error) {
-  console.log("error in d3.json");
 });
+
 
 
 // ------------------------------- Neighborhood Scrolling Table ----------------------

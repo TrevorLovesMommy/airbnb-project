@@ -6,6 +6,7 @@
 var sfHousingStock = 399313;
 //two thirds of housing stock is used for long term rentals https://housing.datasf.org/overview/
 var ltRentalStock = Math.round((sfHousingStock*2)/3);
+var entireHouseCount = 0;
 
 //read jasonofied data from app route http://127.0.0.1:5000/api/v1.0/roomtypes
 d3.json("/api/v1.0/roomtypes").then(function(data) {
