@@ -24,7 +24,7 @@ d3.json("/api/v1.0/legal_illegal").then(function(data) {
   anychart.onDocumentReady(function () {
     // create data set on our data
     var dataSet = anychart.data.set([
-        ['units', 8472, 4822, illegalCount, legalCount],
+        ['units', 8461, 4861, illegalCount, legalCount],
 
     ]);
 
