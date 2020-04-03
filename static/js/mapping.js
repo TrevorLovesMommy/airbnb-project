@@ -17,11 +17,30 @@ function createFeatures(mapData) {
       "</h3><hr><p>" + feature.properties.neighbourhood + "</p></p>" + feature.properties.room_type + "</p></p>" + feature.properties.legal_status + "</p>");
   }
 
-  // Create a GeoJSON layer containing the features array on the mapData object
-  // Run the onEachFeature function once for each piece of data in the array
-  var airbnb = L.geoJSON(mapData, {
+  function style(){
+    return {
+      color: "red"
+    }
+  }
+
+  var legal = mapData.filter(obj=>obj.properties.legal_status==="legal")
+  var illegal = mapData.filter(obj=>obj.properties.legal_status==="illegal")
+
+  var airbnb = {}
+    airbnb.legal = L.geoJSON(legal, {
     onEachFeature: onEachFeatureFunction
   });
+
+    airbnb.illegal = L.geoJSON(illegal, {
+    onEachFeature: onEachFeatureFunction, 
+      style:style
+  });
+
+  // Create a GeoJSON layer containing the features array on the mapData object
+  // Run the onEachFeature function once for each piece of data in the array
+  // var airbnb = L.geoJSON(mapData, {
+  //   onEachFeature: onEachFeatureFunction
+  // });
 
   // Sending our airbnb layer to the createMap function
   createMap(airbnb);
@@ -52,7 +71,8 @@ function createMap(airbnb) {
 
   // Create overlay object to hold our overlay layer
   var overlayMaps = {
-    Airbnb: airbnb
+    "Airbnb Legal": airbnb.legal,
+    "Airbnb Illegal": airbnb.illegal
   };
 
   // Create our map, giving it the streetmap and airbnb layers to display on load
@@ -61,7 +81,7 @@ function createMap(airbnb) {
       37.77, -122.43
     ],
     zoom: 18,
-    layers: [streetmap, airbnb]
+    layers: [streetmap, airbnb.legal, airbnb.illegal]
   });
 
   // Create a layer control
