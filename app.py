@@ -54,6 +54,12 @@ def index():
     #return homepage
     return render_template("index.html")
 
+# Test route for developing map
+@app.route("/map/test")
+def map_test():
+    """Return the homepage."""
+    return render_template("map.html")
+
 @app.route("/api/v1.0/roomtypes")
 def roomtypes():
     # Create our session (link) from Python to the DB
