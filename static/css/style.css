@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+.pfont {
+  font-size: 1.2em;;
+}
+
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
 .wrapper {
   position: relative;
@@ -176,6 +180,7 @@ select {
   #table-area tbody td {
     display: block;
     text-align: center;
+    
   }
 
   #table-area tbody td::before {
@@ -224,9 +229,7 @@ select {
   }
 }
 
-/* set map, body, and html to 100% of the screen size */
-#map,
-body,
-html {
-  height: 100%;
+
+input[type="number"] {
+min-width: 50px;
 }
