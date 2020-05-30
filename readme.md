@@ -23,7 +23,7 @@ We used the following features for our analysis:
 <h2>Insights</h2>
 1.  If we were to convert all entire homes/apartments into long term dwelling units, the housing supply would only increse 1.8% (4,822 units).<br>
 2.  The north eastern portion of San Francisco has the highest concentration of Airbnb listings.<br>
-3.  According to our definition of illegal units (high calendary availability and missing license), 80% of entire homes/apartments are illegally listed.
+3.  According to our definition of illegal units (high calendar availability and missing license), 80% of entire homes/apartments are illegally listed.
 
 <h2>Summary</h2>
 Based on the data, we believe that Airbnb has a minimal effect on San Francisco's long-term rental supply. Converting entire homes/apt on Airbnb to long-term rentals would increase the overall long-term rental supply 1.8%. San Francisco's short-term rental ordinance may be limiting the short-term rental supply relative to total dwelling units. As for the illegal units, there's an opportunity for San Francisco to pursue these homeowners for over-due occupancy taxes and force them to comply with the short-term ordinance.
