@@ -13,4 +13,7 @@ We explored Airbnb's impact on the long-term rental supply using data from <a hr
 
 We used the following features for our analysis:
 1.  Room Type:  An air bnb can list an entire home/apartment, private room or shared room.  We consider listings under the entire home/apartment cateogry as dwelling units that can be added to the long-term rental stock.
-2.  
+2.  Room Type by neighborhood:  Real estate is local, and so are Airbnb listings.  We wanted to understand how Room Type changes by neighborhood.
+Minimum Maximum Nights:  
+License:  
+Latitute and Longitude:  Used to map legal and illegal units
