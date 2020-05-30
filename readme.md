@@ -14,6 +14,10 @@ We explored Airbnb's impact on the long-term rental supply using data from <a hr
 We used the following features for our analysis:
 1.  <b>Room Type</b>:  An homewoner can list an entire home/apartment, private room or shared room.  We consider listings under the entire home/apartment cateogry as dwelling units that can be added to the long-term rental stock.
 2.  <b>Neighborhood</b>:  Real estate is local, and so are Airbnb listings.  We wanted to understand how Room Type changes by neighborhood.
-Minimum Maximum Nights:  Per San Francisco's short-term rental ordinace, a home owner may legally rent his or her home for less than 90 days. Inside Airbnb's dataset didn't include occupancy, but it did include calendar availability.  We inferred from this data that listings with high availability (over 90 days) were probably listed illegally.
-License:  Per San Francisco's short-term rental ordinace, all homeowers
-Latitute and Longitude:  Used to map legal and illegal units
+3.  <b>Minimum Maximum Nights</b>:  Per San Francisco's short-term rental ordinace, a home owner may legally rent his or her home for less than 90 days. Inside Airbnb's dataset didn't include occupancy, but it did include calendar availability.  We inferred from this data that listings with high availability (over 90 days) were probably listed illegally.
+4.  <b>License</b>:  Per San Francisco's short-term rental ordinace, all homeowers must register their unit with the city with a license number.  If the listing didn't include a license number, we assumed it was an illegal unit
+5.  <b>Latitute and Longitude</b>:  Used to map legal and illegal units
+
+<h2>Insights</h2>
+1.  If we were to convert all entire homes/apartments into long term dwelling units, the housing supply would only increse 1.8% (4,822 units)
+2.  
