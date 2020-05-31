@@ -25,7 +25,7 @@ We used the following features for our analysis:
 2.  If we were to convert all entire homes/apartments into long term dwelling units, the housing supply would only increase by 1.8% (4,822 units).<br>
 <img src="https://raw.githubusercontent.com/TrevorLovesMommy/airbnb-project/master/static/images/sfentirehome.JPG">
 2.  The northeastern portion of San Francisco has the highest concentration of Airbnb listings.<br>
-3.  According to our definition of illegal units (high calendar availability and missing license), 80% of entire homes/apartments are illegally listed." border 
+3.  According to our definition of illegal units (high calendar availability and missing license), 80% of entire homes/apartments are illegally listed."
 <img src="https://raw.githubusercontent.com/TrevorLovesMommy/airbnb-project/master/static/images/legalstatus.JPG" border ="1">
 
 <h2>Summary</h2>
